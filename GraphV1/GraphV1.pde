@@ -2,8 +2,8 @@ import java.util.List;
 
 float [][] moveDataArray;
 int dataColumns, dataRows;
-float shiftX, scaleY;
-int PosX, PosY;
+float scaleY;
+int shiftX, PosX, PosY;
 
 MoveDataObj motionAccelX, motionAccelY, motionAccelZ;
 

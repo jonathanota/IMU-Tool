@@ -23,7 +23,10 @@ class MoveDataObj {
   }
 
 
-  void display(float shiftX, float scaleY, int PosX, int PosY) {
+  void display(int shiftX, float scaleY, int PosX, int PosY) {
+
+    int initialScale = 20;
+    int currentPoint = 0;
 
     pushMatrix();
     translate(PosX, PosY);
@@ -36,15 +39,18 @@ class MoveDataObj {
     beginShape();
     for (int j = 0; j < dataRows; j++) {
       // vertex(j*scaleX, scaleY*moveDataArray[sensor][j]);
-      vertex(j + shiftX, 20*moveDataArray[sensor][j]);
+      vertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
     }
     scale(scaleY, 1);
     endShape();
     popMatrix();
-   
-    fill(100);
+
     noStroke();
     rectMode(CENTER);
+    fill(255);
+    // println(initialScale*moveDataArray[sensor][shiftX]);
+    ellipse(0, initialScale*moveDataArray[sensor][shiftX], 3, 3);
+    fill(100);
     rect(PosX, PosY-10, width, -70);
   }
 }
