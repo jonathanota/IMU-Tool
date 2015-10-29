@@ -26,7 +26,7 @@ class MoveDataObj {
   void display(int shiftX, float scaleY, int PosX, int PosY) {
 
     int initialScale = 20;
-    int currentPoint = 0;
+    int currentPoint = shiftX;
 
     pushMatrix();
     translate(PosX, PosY);
@@ -35,8 +35,9 @@ class MoveDataObj {
     strokeWeight(1);
     line(0, -80, 0, 30);
 
-if (abs(shiftX) > dataRows){
- shiftX = dataRows+1; 
+if (abs(currentPoint) >= dataRows){
+ currentPoint = dataRows; 
+ println(currentPoint);
 }
     fill(255, 0, 0);
     //  println(initialScale*moveDataArray[sensor][abs(shiftX)]);
@@ -48,10 +49,8 @@ if (abs(shiftX) > dataRows){
     beginShape();
     for (int j = 0; j < dataRows; j++) {
 
-      vertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
-      //      if (j + shiftX < 0) {
-      //        shiftX = 0;
-      //      }
+      vertex(j + currentPoint, initialScale*moveDataArray[sensor][j]);
+
     }
     scale(scaleY, 1);
     endShape();
