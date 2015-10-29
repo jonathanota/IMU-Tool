@@ -30,26 +30,37 @@ class MoveDataObj {
 
     pushMatrix();
     translate(PosX, PosY);
+
     stroke(255);
     strokeWeight(1);
     line(0, -80, 0, 30);
-    strokeWeight(1);
+
+if (abs(shiftX) > dataRows){
+ shiftX = dataRows+1; 
+}
+    fill(255, 0, 0);
+    //  println(initialScale*moveDataArray[sensor][abs(shiftX)]);
+    ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
+
     noFill();
     stroke(255);
+    strokeWeight(1);
     beginShape();
     for (int j = 0; j < dataRows; j++) {
-      // vertex(j*scaleX, scaleY*moveDataArray[sensor][j]);
+
       vertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
+      //      if (j + shiftX < 0) {
+      //        shiftX = 0;
+      //      }
     }
     scale(scaleY, 1);
     endShape();
     popMatrix();
 
+
+    //support shapes
     noStroke();
     rectMode(CENTER);
-    fill(255);
-    // println(initialScale*moveDataArray[sensor][shiftX]);
-    ellipse(0, initialScale*moveDataArray[sensor][shiftX], 3, 3);
     fill(100);
     rect(PosX, PosY-10, width, -70);
   }

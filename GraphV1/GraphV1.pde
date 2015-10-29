@@ -78,6 +78,8 @@ void importData() {
 
     iter++;
   }
+  
+  
 }
 
 void moveData() {
@@ -95,8 +97,12 @@ void keyPressed() {
       scaleY += .1;
     } else if (keyCode == DOWN) {
       scaleY -= .1;
-    } else {
+    } else if (keyCode == CONTROL){
+     shiftX = -500; 
+    }
+    else {
       scaleY = width/float(dataRows);
+      shiftX = 0;
     }
   }
 
