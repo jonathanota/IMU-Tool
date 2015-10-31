@@ -34,23 +34,22 @@ class MoveDataObj {
     stroke(255);
     strokeWeight(1);
     line(0, -80, 0, 30);
-
+println(shiftX);
+println(currentPoint);
 if (abs(currentPoint) >= dataRows){
  currentPoint = dataRows; 
  println(currentPoint);
 }
     fill(255, 0, 0);
     //  println(initialScale*moveDataArray[sensor][abs(shiftX)]);
-    ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
+    ellipse(0, initialScale*moveDataArray[sensor][abs(currentPoint)], 8, 8);
 
     noFill();
     stroke(255);
     strokeWeight(1);
     beginShape();
     for (int j = 0; j < dataRows; j++) {
-
       vertex(j + currentPoint, initialScale*moveDataArray[sensor][j]);
-
     }
     scale(scaleY, 1);
     endShape();
