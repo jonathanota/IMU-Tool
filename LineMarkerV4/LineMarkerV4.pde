@@ -33,7 +33,7 @@ void draw() {
 }
 
 void initializeMap() {
-  map = new UnfoldingMap(this, new StamenMapProvider.TonerBackground());
+  map = new UnfoldingMap(this, new StamenMapProvider());
   map.zoomToLevel(16);
   map.panTo(currentLocation);
   map.setZoomRange(9, 20); // prevent zooming too far out
@@ -48,7 +48,7 @@ void importData() {
   List<Location> sensorLocations = new ArrayList<Location>();
   List<Marker> sensorMarker = new ArrayList<Marker>();
 
-  for (TableRow sensorDataRow : sensorDataCSV.rows()) {
+  for (TableRow sensorDataRow : sensorDataCSV.rows ()) {
 
     //each table row, inside list sensorDaraCSV.rows() 
     float lat = sensorDataRow.getFloat("locationLatitude");
@@ -64,7 +64,10 @@ void importData() {
     m.setStrokeWeight(10);
     sensorMarker.add(m);
   }
+    sensorDataCSV.clearRows();
+
   map.panTo(locationData);
   map.addMarkers(sensorMarker);
+  
 }
 

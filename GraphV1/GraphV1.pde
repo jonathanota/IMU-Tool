@@ -4,6 +4,7 @@ float [][] moveDataArray;
 int dataColumns, dataRows;
 float scaleY;
 int shiftX, PosX, PosY;
+String AccelX, AccelY, AccelZ, GyroX, GyroY, GyroZ, MagX, MagY, MagZ;
 
 MoveDataObj motionAccelX, motionAccelY, motionAccelZ;
 
@@ -25,17 +26,19 @@ void setup() {
   importData();
 
   //Pass Data array into movement data object
-  motionAccelX = new MoveDataObj(dataColumns, dataRows, accelX, moveDataArray);
-  motionAccelY = new MoveDataObj(dataColumns, dataRows, accelY, moveDataArray);
-  motionAccelZ = new MoveDataObj(dataColumns, dataRows, accelZ, moveDataArray);
+  motionAccelX = new MoveDataObj(AccelX, dataColumns, dataRows, accelX, moveDataArray);
+  motionAccelY = new MoveDataObj(AccelY, dataColumns, dataRows, accelY, moveDataArray);
+  motionAccelZ = new MoveDataObj(AccelZ, dataColumns, dataRows, accelZ, moveDataArray);
 }
 
 
 void draw() {
   background(0);
-  motionAccelX.display(shiftX, scaleY, width/2, 100);
-  motionAccelY.display(shiftX, scaleY, width/2, 200);
-  motionAccelZ.display(shiftX, scaleY, width/2, 300);
+ 
+  //motion...display(graph x location, graph scaling, x location, y location)
+  motionAccelX.display(shiftX, scaleY, width/2, height/1.74);
+  motionAccelY.display(shiftX, scaleY, width/2, height/1.35);
+  motionAccelZ.display(shiftX, scaleY, width/2, height/1.1);
 }
 
 void importData() {
@@ -89,16 +92,16 @@ void keyPressed() {
 
 
   if (key == CODED) {
-    if (keyCode == LEFT) {
+    if (keyCode == LEFT && shiftX <= 0 ) {
       shiftX+= 1;
-    } else if (keyCode == RIGHT) {
+    } else if (keyCode == RIGHT && shiftX > -dataRows+1 ) {
       shiftX-= 1;
     } else if (keyCode == UP) {
       scaleY += .1;
     } else if (keyCode == DOWN) {
       scaleY -= .1;
     } else if (keyCode == CONTROL){
-     shiftX = -500; 
+     shiftX = -dataRows+1; 
     }
     else {
       scaleY = width/float(dataRows);
