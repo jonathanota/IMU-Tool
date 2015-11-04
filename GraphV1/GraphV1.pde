@@ -36,8 +36,8 @@ void draw() {
   background(0);
  
   //motion...display(graph x location, graph scaling, x location, y location)
-  motionAccelX.display(shiftX, scaleY, width/2, height/1.74);
-  motionAccelY.display(shiftX, scaleY, width/2, height/1.35);
+  motionAccelX.display(shiftX, scaleY, width/2, height/1.1-75-75);
+  motionAccelY.display(shiftX, scaleY, width/2, height/1.1-75);
   motionAccelZ.display(shiftX, scaleY, width/2, height/1.1);
 }
 
@@ -108,17 +108,5 @@ void keyPressed() {
       shiftX = 0;
     }
   }
-
-
-
-
-  //  switch(CODED) {
-  //  case UP:
-  //    scaleY += 10;
-  //  case DOWN:
-  //    scaleY -= 10;
-  //  default:
-  //    scaleY = 20;
-  //  }
 }
 

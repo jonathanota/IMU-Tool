@@ -54,6 +54,7 @@ class MoveDataObj {
 
 
     //support shapes
+   // text(sensorName, width/2, 0);
     noStroke();
     rectMode(CENTER);
     fill(100);
