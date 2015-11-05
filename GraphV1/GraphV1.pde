@@ -4,7 +4,6 @@ float [][] moveDataArray;
 int dataColumns, dataRows;
 float scaleY;
 int shiftX, PosX, PosY;
-String AccelX, AccelY, AccelZ, GyroX, GyroY, GyroZ, MagX, MagY, MagZ;
 
 MoveDataObj motionAccelX, motionAccelY, motionAccelZ;
 

@@ -37,15 +37,6 @@ class MoveDataObj {
     strokeWeight(1);
     line(0, -80, 0, 30);
 
-    fill(255, 0, 0);
-    //  println(initialScale*moveDataArray[sensor][abs(shiftX)]);
-    ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
-    
-    String displayData = str(moveDataArray[sensor][abs(shiftX)]);
-    fill(255);
-    textSize(12);
-    text(displayData, 0, 0);
-
     noFill();
     stroke(255);
     strokeWeight(1);
@@ -63,10 +54,24 @@ class MoveDataObj {
     rectMode(CENTER);
     fill(100);
     rect(PosX, PosY-10, width, -70);
+
+pushMatrix();
+translate(PosX, PosY);
+    stroke(255, 0, 0);
+    strokeWeight(1);
+    noFill();
+    ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
+popMatrix();
+
+    String displayData = str(moveDataArray[sensor][abs(shiftX)]);
+    fill(255);
+    textSize(12);
+    text(displayData, PosX+5, PosY-30);
+
     fill(255);
     textSize(20);
-    text(sensorName, width/2, 70);
-    println(sensorName);
+    text(sensorName, 20, PosY-20);
+    //println(sensorName);
   }
 }
 
