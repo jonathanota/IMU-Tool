@@ -26,9 +26,10 @@ void setup() {
   importData();
 
   //Pass Data array into movement data object
-  motionAccelX = new MoveDataObj(AccelX, dataColumns, dataRows, accelX, moveDataArray);
-  motionAccelY = new MoveDataObj(AccelY, dataColumns, dataRows, accelY, moveDataArray);
-  motionAccelZ = new MoveDataObj(AccelZ, dataColumns, dataRows, accelZ, moveDataArray);
+  motionAccelX = new MoveDataObj("AccelX", dataColumns, dataRows, accelX, moveDataArray);
+  motionAccelY = new MoveDataObj("AccelY", dataColumns, dataRows, accelY, moveDataArray);
+  motionAccelZ = new MoveDataObj("AccelZ", dataColumns, dataRows, accelZ, moveDataArray);
+  
 }
 
 

@@ -40,6 +40,11 @@ class MoveDataObj {
     fill(255, 0, 0);
     //  println(initialScale*moveDataArray[sensor][abs(shiftX)]);
     ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
+    
+    String displayData = str(moveDataArray[sensor][abs(shiftX)]);
+    fill(255);
+    textSize(12);
+    text(displayData, 0, 0);
 
     noFill();
     stroke(255);
@@ -54,11 +59,14 @@ class MoveDataObj {
 
 
     //support shapes
-   // text(sensorName, width/2, 0);
     noStroke();
     rectMode(CENTER);
     fill(100);
     rect(PosX, PosY-10, width, -70);
+    fill(255);
+    textSize(20);
+    text(sensorName, width/2, 70);
+    println(sensorName);
   }
 }
 
