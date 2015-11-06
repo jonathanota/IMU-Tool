@@ -33,6 +33,7 @@ void setup() {
 
 
 void draw() {
+  smooth();
   background(0);
  
   //motion...display(graph x location, graph scaling, x location, y location)

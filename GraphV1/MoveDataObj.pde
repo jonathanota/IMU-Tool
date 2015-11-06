@@ -52,22 +52,25 @@ class MoveDataObj {
     //support shapes
     noStroke();
     rectMode(CENTER);
-    fill(100);
+    fill(0);
     rect(PosX, PosY-10, width, -70);
 
-pushMatrix();
-translate(PosX, PosY);
+    
+    pushMatrix();
+    translate(PosX, PosY);
     stroke(255, 0, 0);
-    strokeWeight(1);
+    strokeWeight(1.5);
     noFill();
     ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
-popMatrix();
+    popMatrix();
 
+    
     String displayData = str(moveDataArray[sensor][abs(shiftX)]);
     fill(255);
     textSize(12);
     text(displayData, PosX+5, PosY-30);
 
+    
     fill(255);
     textSize(20);
     text(sensorName, 20, PosY-20);
