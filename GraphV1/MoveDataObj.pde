@@ -30,6 +30,13 @@ class MoveDataObj {
     int initialScale = 20;
     int currentPoint = shiftX;
 
+
+    noStroke();
+    rectMode(CENTER);
+    fill(25);
+    rect(PosX, PosY-10, width, -70);
+
+
     pushMatrix();
     translate(PosX, PosY);
 
@@ -39,7 +46,7 @@ class MoveDataObj {
 
     noFill();
     stroke(255);
-    strokeWeight(1);
+    //strokeWeight(1);
     beginShape();
     for (int j = 0; j < dataRows; j++) {
       vertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
@@ -48,12 +55,7 @@ class MoveDataObj {
     endShape();
     popMatrix();
 
-
-    //support shapes
-    noStroke();
-    rectMode(CENTER);
-    fill(0);
-    rect(PosX, PosY-10, width, -70);
+ //support shapes
 
     
     pushMatrix();

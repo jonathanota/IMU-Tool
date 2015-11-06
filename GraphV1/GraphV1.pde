@@ -18,7 +18,8 @@ int magY = 7;
 int magZ = 8;
 
 void setup() {
-  size(displayWidth/2, displayHeight/2, OPENGL);
+  size(displayWidth/2, displayHeight/2, "processing.core.PGraphicsRetina2D");
+  hint(ENABLE_RETINA_PIXELS);
   smooth();
   background(0);
 
@@ -28,14 +29,14 @@ void setup() {
   motionAccelX = new MoveDataObj("AccelX", dataColumns, dataRows, accelX, moveDataArray);
   motionAccelY = new MoveDataObj("AccelY", dataColumns, dataRows, accelY, moveDataArray);
   motionAccelZ = new MoveDataObj("AccelZ", dataColumns, dataRows, accelZ, moveDataArray);
-  
 }
 
 
 void draw() {
-  smooth();
   background(0);
- 
+  smooth();
+
+
   //motion...display(graph x location, graph scaling, x location, y location)
   motionAccelX.display(shiftX, scaleY, width/2, height/1.1-75-75);
   motionAccelY.display(shiftX, scaleY, width/2, height/1.1-75);
@@ -82,8 +83,6 @@ void importData() {
 
     iter++;
   }
-  
-  
 }
 
 void moveData() {
@@ -101,10 +100,9 @@ void keyPressed() {
       scaleY += .1;
     } else if (keyCode == DOWN) {
       scaleY -= .1;
-    } else if (keyCode == CONTROL){
-     shiftX = -dataRows+1; 
-    }
-    else {
+    } else if (keyCode == CONTROL) {
+      shiftX = -dataRows+1;
+    } else {
       scaleY = width/float(dataRows);
       shiftX = 0;
     }
