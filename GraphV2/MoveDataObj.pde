@@ -1,7 +1,8 @@
-class MoveDataObj {
+class MoveDataObj extends Canvas {
 
-  int dataColumns, dataRows, sensor; 
+  int dataColumns, dataRows, sensor, shiftX, PosX; 
   float [][] moveDataArray;
+  float scaleY, PosY;
   String sensorName;
 
   int accelX = 0;
@@ -15,67 +16,75 @@ class MoveDataObj {
   int magZ = 8;
 
   MoveDataObj( String name, int numColumns, int numRows, int numSensor, 
-  float [][] dataArray) {
+  float [][] dataArray, int ShiftX, float ScaleY, int posX, float posY) {
 
     dataColumns = numColumns;
     dataRows = numRows;
     moveDataArray = dataArray;
     sensor = numSensor;
     sensorName = name;
+    shiftX = ShiftX;
+    scaleY = ScaleY;
+    PosX = posX;
+    PosY = posY;
   }
 
+void draw(PApplet P){
+  
+  display(shiftX, scaleY, PosX, PosY, P);
+}
 
-  void display(int shiftX, float scaleY, int PosX, float PosY) {
+  void display(int shiftx, float scaley, int Posx, float Posy, PApplet d) {
 
     int initialScale = 20;
     int currentPoint = shiftX;
 
 
-    noStroke();
-    rectMode(CENTER);
-    fill(25);
-    rect(PosX, PosY-10, width, -70);
+    d.noStroke();
+    d.rectMode(CENTER);
+    d.fill(25);
+    d.rect(PosX, PosY-10, width, -70);
 
 
-    pushMatrix();
-    translate(PosX, PosY);
+    d.pushMatrix();
+    d.translate(PosX, PosY);
 
-    stroke(255);
-    strokeWeight(1);
-    line(0, -80, 0, 30);
+    d.stroke(255);
+    d.strokeWeight(1);
+    d.line(0, -80, 0, 30);
 
-    noFill();
-    stroke(255);
+    d.noFill();
+    d.stroke(255);
     //strokeWeight(1);
     beginShape();
     for (int j = 0; j < dataRows; j++) {
-      vertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
+      d.vertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
     }
-    scale(scaleY, 1);
-    endShape();
-    popMatrix();
+    d.scale(scaleY, 1);
+    d.endShape();
+    d.popMatrix();
 
  //support shapes
 
     
-    pushMatrix();
-    translate(PosX, PosY);
-    stroke(255, 0, 0);
-    strokeWeight(1.5);
-    noFill();
-    ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
-    popMatrix();
+    d.pushMatrix();
+    d.translate(PosX, PosY);
+    d.stroke(255, 0, 0);
+    d.strokeWeight(1.5);
+    d.noFill();
+    d.ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
+    d.popMatrix();
 
     
     String displayData = str(moveDataArray[sensor][abs(shiftX)]);
-    fill(255);
-    textSize(12);
-    text(displayData, PosX+5, PosY-30);
+    d.fill(255);
+    d.textSize(12);
+    d.text(displayData, PosX+5, PosY-30);
 
     
-    fill(255);
-    textSize(20);
-    text(sensorName, 20, PosY-20);
+    d.fill(255);
+    d.textSize(20);
+    d.text(sensorName, 20, PosY-20);
     //println(sensorName);
   }
 }

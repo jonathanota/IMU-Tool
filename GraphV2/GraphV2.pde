@@ -1,4 +1,7 @@
 import java.util.List;
+import controlP5.*;
+
+ControlP5 cp5;
 
 float [][] moveDataArray;
 int dataColumns, dataRows;
@@ -24,11 +27,19 @@ void setup() {
   background(0);
 
   importData();
-
+  
   //Pass Data array into movement data object
-  motionAccelX = new MoveDataObj("AccelX", dataColumns, dataRows, accelX, moveDataArray);
-  motionAccelY = new MoveDataObj("AccelY", dataColumns, dataRows, accelY, moveDataArray);
-  motionAccelZ = new MoveDataObj("AccelZ", dataColumns, dataRows, accelZ, moveDataArray);
+  motionAccelX = new MoveDataObj("AccelX", dataColumns, dataRows, accelX, moveDataArray,
+  shiftX, scaleY, width/2, height/1.1-75-75);
+//  motionAccelY = new MoveDataObj("AccelY", dataColumns, dataRows, accelY, moveDataArray);
+//  motionAccelZ = new MoveDataObj("AccelZ", dataColumns, dataRows, accelZ, moveDataArray);
+//  
+    //ControlP5 stuff
+  cp5 = new ControlP5(this);
+  cp5.addGroup("Accelerometer")
+    .setLabel("AccelX")
+    .setPosition(width/2, height/2)
+    .addCanvas(motionAccelX);
 }
 
 
@@ -36,11 +47,13 @@ void draw() {
   background(0);
   smooth();
 
-
+/*
   //motion...display(graph x location, graph scaling, x location, y location)
   motionAccelX.display(shiftX, scaleY, width/2, height/1.1-75-75);
   motionAccelY.display(shiftX, scaleY, width/2, height/1.1-75);
   motionAccelZ.display(shiftX, scaleY, width/2, height/1.1);
+  */
+  
 }
 
 void importData() {
