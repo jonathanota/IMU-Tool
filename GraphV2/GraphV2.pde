@@ -38,7 +38,7 @@ void setup() {
   cp5 = new ControlP5(this);
   cp5.addGroup("Accelerometer")
     .setLabel("AccelX")
-    .setPosition(width/2, height/2)
+    .setPosition(0, 0)
     .addCanvas(motionAccelX);
 }
 

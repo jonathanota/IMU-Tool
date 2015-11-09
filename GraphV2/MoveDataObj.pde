@@ -29,62 +29,66 @@ class MoveDataObj extends Canvas {
     PosY = posY;
   }
 
-void draw(PApplet P){
-  
-  display(shiftX, scaleY, PosX, PosY, P);
-}
+  void setup(PApplet d) {
+  }
 
-  void display(int shiftx, float scaley, int Posx, float Posy, PApplet d) {
+  void draw(PApplet d) {
+
+    display(shiftX, scaleY, PosX, PosY);
+   
+  }
+
+  void display(int shiftx, float scaley, int Posx, float Posy) {
 
     int initialScale = 20;
     int currentPoint = shiftX;
 
 
-    d.noStroke();
-    d.rectMode(CENTER);
-    d.fill(25);
-    d.rect(PosX, PosY-10, width, -70);
+    noStroke();
+    rectMode(CENTER);
+    fill(25);
+    rect(PosX, PosY-10, width, -70);
 
 
-    d.pushMatrix();
-    d.translate(PosX, PosY);
+    pushMatrix();
+    translate(PosX, PosY);
 
-    d.stroke(255);
-    d.strokeWeight(1);
-    d.line(0, -80, 0, 30);
+    stroke(255);
+    strokeWeight(1);
+    line(0, -80, 0, 30);
 
-    d.noFill();
-    d.stroke(255);
+    noFill();
+    stroke(255);
     //strokeWeight(1);
     beginShape();
     for (int j = 0; j < dataRows; j++) {
-      d.vertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
+      vertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
     }
-    d.scale(scaleY, 1);
-    d.endShape();
-    d.popMatrix();
+    scale(scaleY, 1);
+    endShape();
+    popMatrix();
 
- //support shapes
+    //support shapes
 
-    
-    d.pushMatrix();
-    d.translate(PosX, PosY);
-    d.stroke(255, 0, 0);
-    d.strokeWeight(1.5);
-    d.noFill();
-    d.ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
-    d.popMatrix();
 
-    
+    pushMatrix();
+    translate(PosX, PosY);
+    stroke(255, 0, 0);
+    strokeWeight(1.5);
+    noFill();
+    ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
+    popMatrix();
+
+
     String displayData = str(moveDataArray[sensor][abs(shiftX)]);
-    d.fill(255);
-    d.textSize(12);
-    d.text(displayData, PosX+5, PosY-30);
+    fill(255);
+    textSize(12);
+    text(displayData, PosX+5, PosY-30);
 
-    
-    d.fill(255);
-    d.textSize(20);
-    d.text(sensorName, 20, PosY-20);
+
+    fill(255);
+    textSize(20);
+    text(sensorName, 20, PosY-20);
     //println(sensorName);
   }
 }
