@@ -44,12 +44,13 @@ class MoveDataObj {
     strokeWeight(1);
     line(0, -80, 0, 30);
 
-    noFill();
+    
     stroke(255);
     //strokeWeight(1);
+    noFill();
     beginShape();
     for (int j = 0; j < dataRows; j++) {
-      vertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
+      curveVertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
     }
     scale(scaleY, 1);
     endShape();
