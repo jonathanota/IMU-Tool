@@ -51,7 +51,7 @@ class MoveDataObj extends Canvas {
 
 
     pushMatrix();
-    translate(PosX, PosY);
+    translate(width/2, 0);
 
     stroke(255);
     strokeWeight(1);
@@ -85,11 +85,12 @@ class MoveDataObj extends Canvas {
     textSize(12);
     text(displayData, PosX+5, PosY-30);
 
-
+/*
     fill(255);
     textSize(20);
     text(sensorName, 20, PosY-20);
     //println(sensorName);
+    */
   }
 }
 

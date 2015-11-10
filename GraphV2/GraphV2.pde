@@ -30,7 +30,7 @@ void setup() {
   
   //Pass Data array into movement data object
   motionAccelX = new MoveDataObj("AccelX", dataColumns, dataRows, accelX, moveDataArray,
-  shiftX, scaleY, width/2, height/1.1-75-75);
+  shiftX, scaleY, PosX, PosY);
 //  motionAccelY = new MoveDataObj("AccelY", dataColumns, dataRows, accelY, moveDataArray);
 //  motionAccelZ = new MoveDataObj("AccelZ", dataColumns, dataRows, accelZ, moveDataArray);
 //  
@@ -38,7 +38,7 @@ void setup() {
   cp5 = new ControlP5(this);
   cp5.addGroup("Accelerometer")
     .setLabel("AccelX")
-    .setPosition(0, 0)
+    .setPosition(100, 100)
     .addCanvas(motionAccelX);
 }
 
@@ -69,9 +69,9 @@ void importData() {
 
   //Setup graph
   shiftX = 1;
-  scaleY = width/float(dataRows);
-  PosX = width/2;
-  PosY = height;
+  scaleY = float(dataRows);
+  PosX = 0;
+  PosY = 0;
 
 
   //actual row value is +2
