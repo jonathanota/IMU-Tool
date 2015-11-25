@@ -10,6 +10,8 @@ int shiftX, PosX, PosY;
 
 MoveDataObj motionAccelX, motionAccelY, motionAccelZ;
 
+Canvas dataAccelX;
+
 int accelX = 0;
 int accelY = 1;
 int accelZ = 2;
@@ -29,7 +31,7 @@ void setup() {
   importData();
   
   //Pass Data array into movement data object
-  motionAccelX = new MoveDataObj("AccelX", dataColumns, dataRows, accelX, moveDataArray,
+  dataAccelX = new MoveDataObj("AccelX", dataColumns, dataRows, accelX, moveDataArray,
   shiftX, scaleY, PosX, PosY);
 //  motionAccelY = new MoveDataObj("AccelY", dataColumns, dataRows, accelY, moveDataArray);
 //  motionAccelZ = new MoveDataObj("AccelZ", dataColumns, dataRows, accelZ, moveDataArray);
@@ -39,7 +41,8 @@ void setup() {
   cp5.addGroup("Accelerometer")
     .setLabel("AccelX")
     .setPosition(100, 100)
-    .addCanvas(motionAccelX);
+    .setWidth(300)
+    .addCanvas(dataAccelX);
 }
 
 

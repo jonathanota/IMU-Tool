@@ -47,11 +47,11 @@ class MoveDataObj extends Canvas {
     noStroke();
     rectMode(CENTER);
     fill(25);
-    rect(PosX, PosY-10, width, -70);
+    rect(0, PosY-10, width, -70);
 
 
     pushMatrix();
-    translate(width/2, 0);
+    translate(0, 0);
 
     stroke(255);
     strokeWeight(1);
@@ -83,7 +83,7 @@ class MoveDataObj extends Canvas {
     String displayData = str(moveDataArray[sensor][abs(shiftX)]);
     fill(255);
     textSize(12);
-    text(displayData, PosX+5, PosY-30);
+    text(displayData, 0+5, 0-30);
 
 /*
     fill(255);
