@@ -56,9 +56,7 @@ class MoveDataObj {
     endShape();
     popMatrix();
 
- //support shapes
-
-    
+ //support shapes  
     pushMatrix();
     translate(PosX, PosY);
     stroke(255, 0, 0);
@@ -73,11 +71,12 @@ class MoveDataObj {
     textSize(12);
     text(displayData, PosX+5, PosY-30);
 
-    
+    /*
     fill(255);
     textSize(20);
     text(sensorName, 20, PosY-20);
     //println(sensorName);
+    */
   }
 }
 

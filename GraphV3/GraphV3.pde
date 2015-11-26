@@ -36,10 +36,12 @@ void setup() {
 
   /* ControlP5 setup */
   cp5 = new ControlP5(this);
+
   Group t = cp5.addGroup("Accel X")
     .setPosition(0, height/2)
       .setWidth(200)
-        ;      
+        .setHeight(15)
+          ;      
 
   t.addDrawable(new CDrawable() {
     public void draw(PApplet p) {
@@ -56,11 +58,11 @@ void draw() {
 
 
   //motion...display(graph x location, graph scaling, x location, y location)
-/*
+  /*
   motionAccelX.display(shiftX, scaleY, width/2, height/1.1-75-75);
-  motionAccelY.display(shiftX, scaleY, width/2, height/1.1-75);
-  motionAccelZ.display(shiftX, scaleY, width/2, height/1.1);
-  */
+   motionAccelY.display(shiftX, scaleY, width/2, height/1.1-75);
+   motionAccelZ.display(shiftX, scaleY, width/2, height/1.1);
+   */
 }
 
 void importData() {
