@@ -1,4 +1,8 @@
 import java.util.List;
+import controlP5.*;
+
+ControlP5 cp5;
+
 
 float [][] moveDataArray;
 int dataColumns, dataRows;
@@ -29,6 +33,20 @@ void setup() {
   motionAccelX = new MoveDataObj("AccelX", dataColumns, dataRows, accelX, moveDataArray);
   motionAccelY = new MoveDataObj("AccelY", dataColumns, dataRows, accelY, moveDataArray);
   motionAccelZ = new MoveDataObj("AccelZ", dataColumns, dataRows, accelZ, moveDataArray);
+
+  /* ControlP5 setup */
+  cp5 = new ControlP5(this);
+  Group t = cp5.addGroup("Accel X")
+    .setPosition(100, 100)
+      .setWidth(200)
+        ;      
+
+  t.addDrawable(new CDrawable() {
+    public void draw(PApplet p) {
+      motionAccelX.display(shiftX, scaleY, width/2, height/1.1-75-75);
+    }
+  }
+  );
 }
 
 
@@ -38,9 +56,11 @@ void draw() {
 
 
   //motion...display(graph x location, graph scaling, x location, y location)
+/*
   motionAccelX.display(shiftX, scaleY, width/2, height/1.1-75-75);
   motionAccelY.display(shiftX, scaleY, width/2, height/1.1-75);
   motionAccelZ.display(shiftX, scaleY, width/2, height/1.1);
+  */
 }
 
 void importData() {
