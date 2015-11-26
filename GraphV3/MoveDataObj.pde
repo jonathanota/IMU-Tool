@@ -44,10 +44,9 @@ class MoveDataObj {
     strokeWeight(1);
     line(0, -80, 0, 30);
 
-    
     stroke(255);
-    //strokeWeight(1);
     noFill();
+    //strokeWeight(1);
     beginShape();
     for (int j = 0; j < dataRows; j++) {
       curveVertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
@@ -55,16 +54,18 @@ class MoveDataObj {
     scale(scaleY, 1);
     endShape();
     popMatrix();
-
- //support shapes  
-    pushMatrix();
-    translate(PosX, PosY);
-    stroke(255, 0, 0);
-    strokeWeight(1.5);
-    noFill();
-    ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
-    popMatrix();
-
+    
+    //support shapes  
+     pushMatrix();
+     translate(PosX, PosY);
+     stroke(255, 0, 0);
+     strokeWeight(1.5);
+     noFill();
+     ellipseMode(CENTER);
+     ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
+     println(initialScale*moveDataArray[sensor][abs(shiftX)]);
+     popMatrix();
+     
     stroke(0);
     String displayData = str(moveDataArray[sensor][abs(shiftX)]);
     fill(255);
@@ -73,10 +74,10 @@ class MoveDataObj {
 
     /*
     fill(255);
-    textSize(20);
-    text(sensorName, 20, PosY-20);
-    //println(sensorName);
-    */
+     textSize(20);
+     text(sensorName, 20, PosY-20);
+     //println(sensorName);
+     */
   }
 }
 
