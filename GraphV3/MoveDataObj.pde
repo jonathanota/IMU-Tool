@@ -67,7 +67,7 @@ class MoveDataObj {
     ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
     popMatrix();
 
-    
+    stroke(0);
     String displayData = str(moveDataArray[sensor][abs(shiftX)]);
     fill(255);
     textSize(12);

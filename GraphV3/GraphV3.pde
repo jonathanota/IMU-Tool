@@ -37,13 +37,13 @@ void setup() {
   /* ControlP5 setup */
   cp5 = new ControlP5(this);
   Group t = cp5.addGroup("Accel X")
-    .setPosition(100, 100)
+    .setPosition(0, height/2)
       .setWidth(200)
         ;      
 
   t.addDrawable(new CDrawable() {
     public void draw(PApplet p) {
-      motionAccelX.display(shiftX, scaleY, width/2, height/1.1-75-75);
+      motionAccelX.display(shiftX, scaleY, width/2, 50);
     }
   }
   );
