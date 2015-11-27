@@ -34,7 +34,26 @@ void setup() {
   motionAccelY = new MoveDataObj("AccelY", dataColumns, dataRows, accelY, moveDataArray);
   motionAccelZ = new MoveDataObj("AccelZ", dataColumns, dataRows, accelZ, moveDataArray);
 
-  /* ControlP5 setup */
+setupControlP5();
+ 
+}
+
+
+void draw() {
+  background(0);
+  smooth();
+
+
+  //motion...display(graph x location, graph scaling, x location, y location)
+  /*
+  motionAccelX.display(shiftX, scaleY, width/2, height/1.1-75-75);
+   motionAccelY.display(shiftX, scaleY, width/2, height/1.1-75);
+   motionAccelZ.display(shiftX, scaleY, width/2, height/1.1);
+   */
+}
+
+void setupControlP5(){
+   /* ControlP5 setup */
   cp5 = new ControlP5(this);
 
   Group AccelX = cp5.addGroup("Accel X")
@@ -64,20 +83,6 @@ void setup() {
     }
   }
   );
-}
-
-
-void draw() {
-  background(0);
-  smooth();
-
-
-  //motion...display(graph x location, graph scaling, x location, y location)
-  /*
-  motionAccelX.display(shiftX, scaleY, width/2, height/1.1-75-75);
-   motionAccelY.display(shiftX, scaleY, width/2, height/1.1-75);
-   motionAccelZ.display(shiftX, scaleY, width/2, height/1.1);
-   */
 }
 
 void importData() {
