@@ -35,8 +35,7 @@ void setup() {
   motionAccelY = new MoveDataObj("AccelY", dataColumns, dataRows, accelY, moveDataArray);
   motionAccelZ = new MoveDataObj("AccelZ", dataColumns, dataRows, accelZ, moveDataArray);
 
-setupControlP5();
- 
+  setupControlP5();
 }
 
 
@@ -53,44 +52,64 @@ void draw() {
    */
 }
 
-void setupControlP5(){
-   /* ControlP5 setup */
+void setupControlP5() {
+  /* ControlP5 setup */
   cp5 = new ControlP5(this);
+
+//      .setPosition(5, height/2)
 
   Group AccelX = cp5.addGroup("Accel X")
     .setLabel("Accelerometer X")
-      .setPosition(5, height/2)
         .setWidth(200)
-          .setHeight(12)
             ;      
 
   AccelX.addDrawable(new CDrawable() {
     public void draw(PApplet p) {
-      motionAccelX.display(shiftX, scaleY, width/2, 50);
+      motionAccelX.display(shiftX, scaleY, width/2, 45);
     }
   }
   );
 
+//      .setPosition(5, height/2)
+
+
   Group AccelY = cp5.addGroup("Accel Y")
     .setLabel("Accelerometer Y")
-      .setPosition(5, height/2)
         .setWidth(200)
-          .setHeight(12)
             ;
 
   AccelY.addDrawable(new CDrawable() {
     public void draw(PApplet p) {
-      motionAccelY.display(shiftX, scaleY, width/2, 50);
+      motionAccelY.display(shiftX, scaleY, width/2, 45);
     }
   }
   );
   
+    Group AccelZ = cp5.addGroup("Accel Z")
+    .setLabel("Accelerometer Z")
+        .setWidth(200)
+            ;
+
+  AccelZ.addDrawable(new CDrawable() {
+    public void draw(PApplet p) {
+      motionAccelZ.display(shiftX, scaleY, width/2, 45);
+    }
+  }
+  );
+  
+  
+
   accordion = cp5.addAccordion("Sensor Stack")
-  .setPosition(5, height/2)
-  .setWidth(200)
-  .addItem(AccelX)
-  .addItem(AccelY)
-  ;
+    .setPosition(5, 5)
+      .setWidth(200)
+        .addItem(AccelX)
+          .addItem(AccelY)
+          .addItem(AccelZ)
+          .setItemHeight(75)
+            ;
+
+  accordion.setMinItemHeight(50);
+  accordion.setCollapseMode(Accordion.MULTI);
   
 }
 

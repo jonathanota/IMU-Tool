@@ -72,17 +72,6 @@ class MoveDataObj {
     textSize(12);
     text(displayData, PosX+5, PosY-30);
 
-pushMatrix();
-translate(0,0);
-popMatrix();
- 
-    /*
-    fill(255);
-     textSize(20);
-     text(sensorName, 20, PosY-20);
-     //println(sensorName);
-     */
-     
      //reset RectMode() for controlP5 bar
      rectMode(CORNER);
      strokeWeight(0);     
