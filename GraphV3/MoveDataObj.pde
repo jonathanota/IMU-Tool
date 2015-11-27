@@ -42,7 +42,7 @@ class MoveDataObj {
 
     stroke(255);
     strokeWeight(1);
-    line(0, -80, 0, 30);
+    line(0, -50, 0, 30);
 
     stroke(255);
     noFill();
@@ -54,6 +54,7 @@ class MoveDataObj {
     scale(scaleY, 1);
     endShape();
     popMatrix();
+   
     
     //support shapes  
      pushMatrix();
@@ -63,7 +64,6 @@ class MoveDataObj {
      noFill();
      ellipseMode(CENTER);
      ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
-     println(initialScale*moveDataArray[sensor][abs(shiftX)]);
      popMatrix();
      
     stroke(0);
@@ -72,6 +72,10 @@ class MoveDataObj {
     textSize(12);
     text(displayData, PosX+5, PosY-30);
 
+pushMatrix();
+translate(0,0);
+popMatrix();
+ 
     /*
     fill(255);
      textSize(20);

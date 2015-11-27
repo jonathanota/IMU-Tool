@@ -37,18 +37,20 @@ void setup() {
   /* ControlP5 setup */
   cp5 = new ControlP5(this);
 
-  Group t = cp5.addGroup("Accel X")
-    .setPosition(0, height/2)
+  Group AccelX = cp5.addGroup("Accel X")
+    .setLabel("Accelerometer X")
+    .setPosition(5, height/2)
       .setWidth(200)
-        .setHeight(15)
+        .setHeight(12)
           ;      
 
-  t.addDrawable(new CDrawable() {
+  AccelX.addDrawable(new CDrawable() {
     public void draw(PApplet p) {
       motionAccelX.display(shiftX, scaleY, width/2, 50);
     }
   }
   );
+  
 }
 
 
