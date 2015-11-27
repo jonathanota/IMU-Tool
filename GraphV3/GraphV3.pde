@@ -34,14 +34,14 @@ void setup() {
 
   //Pass Data array into movement data object
   /*Accelerometer Object */
-  motionAccelX = new MoveDataObj("AccelX", dataColumns, dataRows, accelX, moveDataArray);
-  motionAccelY = new MoveDataObj("AccelY", dataColumns, dataRows, accelY, moveDataArray);
-  motionAccelZ = new MoveDataObj("AccelZ", dataColumns, dataRows, accelZ, moveDataArray);
+  motionAccelX = new MoveDataObj("AccelX", 20, dataColumns, dataRows, accelX, moveDataArray);
+  motionAccelY = new MoveDataObj("AccelY", 20, dataColumns, dataRows, accelY, moveDataArray);
+  motionAccelZ = new MoveDataObj("AccelZ", 20, dataColumns, dataRows, accelZ, moveDataArray);
 
   /*Gyroscope Object */
-  motionGyroX = new MoveDataObj("GyroX", dataColumns, dataRows, gyroX, moveDataArray);
-  motionGyroY = new MoveDataObj("GyroY", dataColumns, dataRows, gyroY, moveDataArray);
-  motionGyroZ = new MoveDataObj("GyroZ", dataColumns, dataRows, gyroZ, moveDataArray);
+  motionGyroX = new MoveDataObj("GyroX", 10, dataColumns, dataRows, gyroX, moveDataArray);
+  motionGyroY = new MoveDataObj("GyroY", 10, dataColumns, dataRows, gyroY, moveDataArray);
+  motionGyroZ = new MoveDataObj("GyroZ", 10, dataColumns, dataRows, gyroZ, moveDataArray);
 
   setupControlP5();
 }
@@ -64,7 +64,7 @@ void setupControlP5() {
   /* ControlP5 setup */
   cp5 = new ControlP5(this);
 
-  /* ACCELEROMETER DATA */
+  /*--------------- ACCELEROMETER DATA----------------- */
   Group AccelX = cp5.addGroup("Accel X")
     .setLabel("Accelerometer X")
       .setWidth(200)
@@ -102,7 +102,7 @@ void setupControlP5() {
   );
 
 
-  /*GYROSCOPE DATA */
+  /*-----------GYROSCOPE DATA----------------- */
 
   Group GyroX = cp5.addGroup("Gyro X")
     .setLabel("Gyroscope X")

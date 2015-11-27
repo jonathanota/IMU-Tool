@@ -1,6 +1,6 @@
 class MoveDataObj {
 
-  int dataColumns, dataRows, sensor; 
+  int dataColumns, dataRows, sensor, initialScale; 
   float [][] moveDataArray;
   String sensorName;
 
@@ -14,7 +14,7 @@ class MoveDataObj {
   int magY = 7;
   int magZ = 8;
 
-  MoveDataObj( String name, int numColumns, int numRows, int numSensor, 
+  MoveDataObj( String name, int scale, int numColumns, int numRows, int numSensor, 
   float [][] dataArray) {
 
     dataColumns = numColumns;
@@ -22,12 +22,12 @@ class MoveDataObj {
     moveDataArray = dataArray;
     sensor = numSensor;
     sensorName = name;
+    initialScale = scale;
   }
 
 
   void display(int shiftX, float scaleY, int PosX, float PosY) {
 
-    int initialScale = 20;
     int currentPoint = shiftX;
 
 
