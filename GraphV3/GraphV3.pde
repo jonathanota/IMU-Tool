@@ -3,6 +3,7 @@ import controlP5.*;
 
 ControlP5 cp5;
 
+Accordion accordion;
 
 float [][] moveDataArray;
 int dataColumns, dataRows;
@@ -72,7 +73,7 @@ void setupControlP5(){
 
   Group AccelY = cp5.addGroup("Accel Y")
     .setLabel("Accelerometer Y")
-      .setPosition(5, height/2-100)
+      .setPosition(5, height/2)
         .setWidth(200)
           .setHeight(12)
             ;
@@ -83,6 +84,14 @@ void setupControlP5(){
     }
   }
   );
+  
+  accordion = cp5.addAccordion("Sensor Stack")
+  .setPosition(5, height/2)
+  .setWidth(200)
+  .addItem(AccelX)
+  .addItem(AccelY)
+  ;
+  
 }
 
 void importData() {
