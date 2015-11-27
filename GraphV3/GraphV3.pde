@@ -10,7 +10,9 @@ int dataColumns, dataRows;
 float scaleY;
 int shiftX, PosX, PosY;
 
-MoveDataObj motionAccelX, motionAccelY, motionAccelZ;
+MoveDataObj 
+motionAccelX, motionAccelY, motionAccelZ, 
+motionGyroX, motionGyroY, motionGyroZ;
 
 int accelX = 0;
 int accelY = 1;
@@ -31,9 +33,15 @@ void setup() {
   importData();
 
   //Pass Data array into movement data object
+  /*Accelerometer Object */
   motionAccelX = new MoveDataObj("AccelX", dataColumns, dataRows, accelX, moveDataArray);
   motionAccelY = new MoveDataObj("AccelY", dataColumns, dataRows, accelY, moveDataArray);
   motionAccelZ = new MoveDataObj("AccelZ", dataColumns, dataRows, accelZ, moveDataArray);
+
+  /*Gyroscope Object */
+  motionGyroX = new MoveDataObj("GyroX", dataColumns, dataRows, gyroX, moveDataArray);
+  motionGyroY = new MoveDataObj("GyroY", dataColumns, dataRows, gyroY, moveDataArray);
+  motionGyroZ = new MoveDataObj("GyroZ", dataColumns, dataRows, gyroZ, moveDataArray);
 
   setupControlP5();
 }
@@ -56,12 +64,11 @@ void setupControlP5() {
   /* ControlP5 setup */
   cp5 = new ControlP5(this);
 
-//      .setPosition(5, height/2)
-
+  /* ACCELEROMETER DATA */
   Group AccelX = cp5.addGroup("Accel X")
     .setLabel("Accelerometer X")
-        .setWidth(200)
-            ;      
+      .setWidth(200)
+        ;      
 
   AccelX.addDrawable(new CDrawable() {
     public void draw(PApplet p) {
@@ -70,13 +77,10 @@ void setupControlP5() {
   }
   );
 
-//      .setPosition(5, height/2)
-
-
   Group AccelY = cp5.addGroup("Accel Y")
     .setLabel("Accelerometer Y")
-        .setWidth(200)
-            ;
+      .setWidth(200)
+        ;
 
   AccelY.addDrawable(new CDrawable() {
     public void draw(PApplet p) {
@@ -84,11 +88,11 @@ void setupControlP5() {
     }
   }
   );
-  
-    Group AccelZ = cp5.addGroup("Accel Z")
+
+  Group AccelZ = cp5.addGroup("Accel Z")
     .setLabel("Accelerometer Z")
-        .setWidth(200)
-            ;
+      .setWidth(200)
+        ;
 
   AccelZ.addDrawable(new CDrawable() {
     public void draw(PApplet p) {
@@ -96,21 +100,60 @@ void setupControlP5() {
     }
   }
   );
-  
-  
+
+
+  /*GYROSCOPE DATA */
+
+  Group GyroX = cp5.addGroup("Gyro X")
+    .setLabel("Gyroscope X")
+      .setWidth(200)
+        ;      
+
+  GyroX.addDrawable(new CDrawable() {
+    public void draw(PApplet p) {
+      motionGyroX.display(shiftX, scaleY, width/2, 45);
+    }
+  }
+  );
+
+  Group GyroY = cp5.addGroup("Gyro Y")
+    .setLabel("Gyroscope Y")
+      .setWidth(200)
+        ;
+
+  GyroY.addDrawable(new CDrawable() {
+    public void draw(PApplet p) {
+      motionGyroY.display(shiftX, scaleY, width/2, 45);
+    }
+  }
+  );
+
+  Group GyroZ = cp5.addGroup("Gyro Z")
+    .setLabel("Gyroscope Z")
+      .setWidth(200)
+        ;
+
+  GyroZ.addDrawable(new CDrawable() {
+    public void draw(PApplet p) {
+      motionGyroZ.display(shiftX, scaleY, width/2, 45);
+    }
+  }
+  );
 
   accordion = cp5.addAccordion("Sensor Stack")
     .setPosition(5, 5)
       .setWidth(200)
         .addItem(AccelX)
-          .addItem(AccelY)
-          .addItem(AccelZ)
-          .setItemHeight(75)
-            ;
+        .addItem(AccelY)
+        .addItem(AccelZ)
+        .addItem(GyroX)
+        .addItem(GyroY)
+        .addItem(GyroZ)
+          .setItemHeight(70)
+                      ;
 
   accordion.setMinItemHeight(50);
   accordion.setCollapseMode(Accordion.MULTI);
-  
 }
 
 void importData() {
