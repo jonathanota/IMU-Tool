@@ -55,7 +55,7 @@ class MoveDataObj {
     endShape();
     popMatrix();
    
-    
+   
     //support shapes  
      pushMatrix();
      translate(PosX, PosY);
@@ -82,6 +82,10 @@ popMatrix();
      text(sensorName, 20, PosY-20);
      //println(sensorName);
      */
+     
+     //reset RectMode() for controlP5 bar
+     rectMode(CORNER);
+     strokeWeight(0);     
   }
 }
 

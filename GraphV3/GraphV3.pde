@@ -39,10 +39,10 @@ void setup() {
 
   Group AccelX = cp5.addGroup("Accel X")
     .setLabel("Accelerometer X")
-    .setPosition(5, height/2)
-      .setWidth(200)
-        .setHeight(12)
-          ;      
+      .setPosition(5, height/2)
+        .setWidth(200)
+          .setHeight(12)
+            ;      
 
   AccelX.addDrawable(new CDrawable() {
     public void draw(PApplet p) {
@@ -50,7 +50,20 @@ void setup() {
     }
   }
   );
-  
+
+  Group AccelY = cp5.addGroup("Accel Y")
+    .setLabel("Accelerometer Y")
+      .setPosition(5, height/2-100)
+        .setWidth(200)
+          .setHeight(12)
+            ;
+
+  AccelY.addDrawable(new CDrawable() {
+    public void draw(PApplet p) {
+      motionAccelY.display(shiftX, scaleY, width/2, 50);
+    }
+  }
+  );
 }
 
 
