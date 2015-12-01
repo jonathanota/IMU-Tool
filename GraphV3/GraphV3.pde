@@ -195,10 +195,11 @@ void importData() {
     moveDataArray [magY][iter] = sensorDataRow.getFloat("locationHeadingY");
     moveDataArray [magZ][iter] = sensorDataRow.getFloat("locationHeadingZ");
 
-    iter++;
-    
     /* -- some kind of loading animation for large table creation -- */
     loadScreen(iter);
+
+    iter++;
+    
   }
   
 
@@ -207,14 +208,11 @@ void importData() {
 
 void loadScreen(int scan) {
   
-  
   background(0);
-  fill(map(scan, 0, 255, 0, dataRows));
-  //rectMode(CENTER);
+  fill(map(scan, 0, dataRows, 0, 255));
   rect(width/2-25, height/2, 50,50);
   fill(255);
-  text(map(scan, 0, 100, 0, dataRows), width/2-25, height/2 + 75); 
-  //rectMode(CORNERS);
+  text(map(scan, 0, dataRows, 0, 100) + "%", width/2-25, height/2 + 75); 
   
 }
 

@@ -44,7 +44,6 @@ class MoveDataObj {
     stroke(255);
     strokeWeight(1);
     line(0, -50, 0, 30);
-
     stroke(255);
     noFill();
     //strokeWeight(1);
@@ -79,6 +78,10 @@ class MoveDataObj {
     ellipseMode(CENTER);
     ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
     popMatrix();
+    
+    rectMode(CENTER);
+    line(mouseX, -10, mouseX, 100);
+
 
     stroke(0);
     String displayData = str(moveDataArray[sensor][abs(shiftX)]);
