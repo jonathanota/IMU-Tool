@@ -29,6 +29,7 @@ class MoveDataObj {
   void display(int shiftX, float scaleY, int PosX, float PosY) {
 
     int currentPoint = shiftX;
+    int shiftXDisplay = 0;
 
 
     noStroke();
@@ -48,33 +49,46 @@ class MoveDataObj {
     noFill();
     //strokeWeight(1);
     beginShape();
+
     for (int j = 0; j < dataRows; j++) {
       curveVertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
     }
+
+    /*
+    for (int j = 0; j < PosX+shiftXDisplay; j++) {     
+     curveVertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
+     println(j + shiftX);
+     
+     if ((j+shiftX) < 0 ){
+     shiftXDisplay++;
+     }
+     }
+     */
+
     scale(scaleY, 1);
     endShape();
     popMatrix();
-   
-   
+
+
     //support shapes  
-     pushMatrix();
-     translate(PosX, PosY);
-     stroke(255, 0, 0);
-     strokeWeight(1.5);
-     noFill();
-     ellipseMode(CENTER);
-     ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
-     popMatrix();
-     
+    pushMatrix();
+    translate(PosX, PosY);
+    stroke(255, 0, 0);
+    strokeWeight(1.5);
+    noFill();
+    ellipseMode(CENTER);
+    ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
+    popMatrix();
+
     stroke(0);
     String displayData = str(moveDataArray[sensor][abs(shiftX)]);
     fill(255);
     textSize(12);
     text(displayData, PosX+5, PosY-30);
 
-     //reset RectMode() for controlP5 bar
-     rectMode(CORNER);
-     strokeWeight(0);     
+    //reset RectMode() for controlP5 bar
+    rectMode(CORNER);
+    strokeWeight(0);
   }
 }
 

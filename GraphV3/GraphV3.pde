@@ -3,7 +3,7 @@ import controlP5.*;
 
 ControlP5 cp5;
 
-Accordion accordion;
+Accordion dataAccordion;
 
 float [][] moveDataArray;
 int dataColumns, dataRows;
@@ -43,7 +43,7 @@ void setup() {
   motionGyroY = new MoveDataObj("GyroY", 10, dataColumns, dataRows, gyroY, moveDataArray);
   motionGyroZ = new MoveDataObj("GyroZ", 10, dataColumns, dataRows, gyroZ, moveDataArray);
 
-  setupControlP5();
+  setupGUI();
 }
 
 
@@ -60,11 +60,12 @@ void draw() {
    */
 }
 
-void setupControlP5() {
+void setupGUI() {
   /* ControlP5 setup */
   cp5 = new ControlP5(this);
 
   /*--------------- ACCELEROMETER DATA----------------- */
+  
   Group AccelX = cp5.addGroup("Accel X")
     .setLabel("Accelerometer X")
       .setWidth(200)
@@ -140,7 +141,7 @@ void setupControlP5() {
   }
   );
 
-  accordion = cp5.addAccordion("Sensor Stack")
+  dataAccordion = cp5.addAccordion("Sensor Stack")
     .setPosition(5, 5)
       .setWidth(200)
         .addItem(AccelX)
@@ -152,8 +153,8 @@ void setupControlP5() {
           .setItemHeight(70)
                       ;
 
-  accordion.setMinItemHeight(50);
-  accordion.setCollapseMode(Accordion.MULTI);
+  dataAccordion.setMinItemHeight(50);
+  dataAccordion.setCollapseMode(Accordion.MULTI);
 }
 
 void importData() {
@@ -195,10 +196,26 @@ void importData() {
     moveDataArray [magZ][iter] = sensorDataRow.getFloat("locationHeadingZ");
 
     iter++;
+    
+    /* -- some kind of loading animation for large table creation -- */
+    loadScreen(iter);
   }
+  
+
+  
 }
 
-void moveData() {
+void loadScreen(int scan) {
+  
+  
+  background(0);
+  fill(map(scan, 0, 255, 0, dataRows));
+  //rectMode(CENTER);
+  rect(width/2-25, height/2, 50,50);
+  fill(255);
+  text(map(scan, 0, 100, 0, dataRows), width/2-25, height/2 + 75); 
+  //rectMode(CORNERS);
+  
 }
 
 void keyPressed() {
