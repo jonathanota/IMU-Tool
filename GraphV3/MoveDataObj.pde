@@ -79,8 +79,8 @@ class MoveDataObj {
     ellipse(0, initialScale*moveDataArray[sensor][abs(shiftX)], 8, 8);
     popMatrix();
     
-    rectMode(CENTER);
-    line(mouseX, -10, mouseX, 100);
+    //rectMode(CENTER);
+   // line(mouseX, -10, mouseX, 100);
 
 
     stroke(0);

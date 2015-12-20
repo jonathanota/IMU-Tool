@@ -58,9 +58,11 @@ void draw() {
    motionAccelY.display(shiftX, scaleY, width/2, height/1.1-75);
    motionAccelZ.display(shiftX, scaleY, width/2, height/1.1);
    */
+   println(frameRate);
 }
 
 void setupGUI() {
+ 
   /* ControlP5 setup */
   cp5 = new ControlP5(this);
 
@@ -160,7 +162,7 @@ void setupGUI() {
 void importData() {
 
   //This method takes data from the Table and puts them into an array
-  String sensorDataFile = "sensorLog2.csv";
+  String sensorDataFile = "sensorLog3.csv";
   Table sensorDataCSV = loadTable(sensorDataFile, "header, csv");
 
   //set # of columns we're reading from
@@ -202,7 +204,7 @@ void importData() {
     
   }
   
-
+sensorDataCSV.clearRows();
   
 }
 
@@ -225,9 +227,9 @@ void keyPressed() {
     } else if (keyCode == RIGHT && shiftX > -dataRows+1 ) {
       shiftX-= 1;
     } else if (keyCode == UP) {
-      scaleY += .1;
+      scaleY += .05;
     } else if (keyCode == DOWN) {
-      scaleY -= .1;
+      scaleY -= .05;
     } else if (keyCode == CONTROL) {
       shiftX = -dataRows+1;
     } else {
