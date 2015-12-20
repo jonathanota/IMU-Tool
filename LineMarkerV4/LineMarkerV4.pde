@@ -18,22 +18,27 @@ Location locationData;
 Location currentLocation = new Location(37.75646384343296f, -122.4212272838898f);
 
 UnfoldingMap map;
+DebugDisplay debugDisplay;
+
 
 void setup() {
   size(displayWidth/2, displayHeight/2, OPENGL);
   smooth();
 
   initializeMap();  
-  importData();
+  //importData();
 }
 
 
 void draw() {
   map.draw();
+
 }
 
 void initializeMap() {
-  map = new UnfoldingMap(this, new StamenMapProvider());
+ // map = new UnfoldingMap(this, new StamenMapProvider());
+    map = new UnfoldingMap(this, new Microsoft.RoadProvider());
+
   map.zoomToLevel(16);
   map.panTo(currentLocation);
   map.setZoomRange(9, 20); // prevent zooming too far out
@@ -42,7 +47,7 @@ void initializeMap() {
 }
 
 void importData() {
-  String sensorDataFile = "sensorLog2.csv";
+  String sensorDataFile = "sensorLog4.csv";
   Table sensorDataCSV = loadTable(sensorDataFile, "header, csv");
 
   List<Location> sensorLocations = new ArrayList<Location>();
