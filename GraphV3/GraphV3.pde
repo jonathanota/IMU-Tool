@@ -25,8 +25,8 @@ int magY = 7;
 int magZ = 8;
 
 void setup() {
-  size(displayWidth/2, displayHeight/2, "processing.core.PGraphicsRetina2D");
-  hint(ENABLE_RETINA_PIXELS);
+  size(displayWidth/2, displayHeight/2, OPENGL);
+  //hint(ENABLE_RETINA_PIXELS);
   smooth();
   background(0);
 
