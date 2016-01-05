@@ -6,6 +6,7 @@ ControlP5 cp5;
 Accordion dataAccordion;
 
 float [][] moveDataArray;
+String [][] timeLog;
 int dataColumns, dataRows;
 float scaleY;
 int shiftX, PosX, PosY;
@@ -23,10 +24,11 @@ int gyroZ = 5;
 int magX = 6;
 int magY = 7;
 int magZ = 8;
+int time = 9;
 
 void setup() {
-  size(displayWidth/2, displayHeight/2, OPENGL);
-  //hint(ENABLE_RETINA_PIXELS);
+  size(displayWidth-100, displayHeight-100, "processing.core.PGraphicsRetina2D");
+  hint(ENABLE_RETINA_PIXELS);
   smooth();
   background(0);
 
@@ -51,14 +53,28 @@ void draw() {
   background(0);
   smooth();
 
-
+  timeStamp();
+  
   //motion...display(graph x location, graph scaling, x location, y location)
   /*
   motionAccelX.display(shiftX, scaleY, width/2, height/1.1-75-75);
    motionAccelY.display(shiftX, scaleY, width/2, height/1.1-75);
    motionAccelZ.display(shiftX, scaleY, width/2, height/1.1);
    */
-   println(frameRate);
+   // println(frameRate);
+   
+   //println(scaleY);
+}
+
+void timeStamp() {
+     
+  
+    String timeStampText = timeLog[0][abs(shiftX)];
+    fill(255);
+    textSize(18);
+    text(timeStampText, 30, height-50);
+    println(timeStampText);
+    
 }
 
 void setupGUI() {
@@ -169,6 +185,7 @@ void importData() {
   dataColumns = 9;
   dataRows = sensorDataCSV.getRowCount();
   moveDataArray = new float [dataColumns][dataRows];
+  timeLog = new String [1][dataRows];
 
   //Setup graph
   shiftX = 1;
@@ -187,6 +204,7 @@ void importData() {
     float lat = sensorDataRow.getFloat("locationLatitude");
     float lng = sensorDataRow.getFloat("locationLongitude");
 
+    
     moveDataArray [accelX][iter] = sensorDataRow.getFloat("accelerometerAccelerationX");
     moveDataArray [accelY][iter] = sensorDataRow.getFloat("accelerometerAccelerationY");
     moveDataArray [accelZ][iter] = sensorDataRow.getFloat("accelerometerAccelerationZ");
@@ -196,9 +214,11 @@ void importData() {
     moveDataArray [magX][iter] = sensorDataRow.getFloat("locationHeadingX");
     moveDataArray [magY][iter] = sensorDataRow.getFloat("locationHeadingY");
     moveDataArray [magZ][iter] = sensorDataRow.getFloat("locationHeadingZ");
-
+    
+    timeLog [0][iter] = sensorDataRow.getString("loggingTime");
+    
     /* -- some kind of loading animation for large table creation -- */
-    loadScreen(iter);
+    //loadScreen(iter);
 
     iter++;
     
@@ -237,5 +257,7 @@ void keyPressed() {
       shiftX = 0;
     }
   }
+  
+  
 }
 

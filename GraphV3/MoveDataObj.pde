@@ -49,20 +49,19 @@ class MoveDataObj {
     //strokeWeight(1);
     beginShape();
 
-    for (int j = 0; j < dataRows; j++) {
+    int onScreenDataBegin = abs(shiftX) - 100;
+    if (onScreenDataBegin < 0) { onScreenDataBegin = 0; }
+    
+    int onScreenDataEnd   = abs(shiftX) + 100;
+    if (onScreenDataEnd > dataRows) { onScreenDataEnd = dataRows; }
+    
+    for (int j = onScreenDataBegin; j < onScreenDataEnd; j++) {
       curveVertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
     }
 
-    /*
-    for (int j = 0; j < PosX+shiftXDisplay; j++) {     
-     curveVertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
-     println(j + shiftX);
-     
-     if ((j+shiftX) < 0 ){
-     shiftXDisplay++;
-     }
-     }
-     */
+//    for (int j = 0; j < dataRows; j++) {
+//      curveVertex(j + shiftX, initialScale*moveDataArray[sensor][j]);
+//    }
 
     scale(scaleY, 1);
     endShape();
