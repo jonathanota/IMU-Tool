@@ -26,6 +26,9 @@ int magY = 7;
 int magZ = 8;
 int time = 9;
 
+int timeHour, timeMin, timeSec, timeMilli;
+long currentTime, prevTime, timeDifference;
+
 void setup() {
   size(displayWidth-100, displayHeight-100, "processing.core.PGraphicsRetina2D");
   hint(ENABLE_RETINA_PIXELS);
@@ -54,36 +57,62 @@ void draw() {
   smooth();
 
   timeStamp();
-  
+
   //motion...display(graph x location, graph scaling, x location, y location)
   /*
   motionAccelX.display(shiftX, scaleY, width/2, height/1.1-75-75);
    motionAccelY.display(shiftX, scaleY, width/2, height/1.1-75);
    motionAccelZ.display(shiftX, scaleY, width/2, height/1.1);
    */
-   // println(frameRate);
-   
-   //println(scaleY);
+  // println(frameRate);
+
+  //println(scaleY);
 }
 
 void timeStamp() {
-     
-  
-    String timeStampText = timeLog[0][abs(shiftX)];
-    fill(255);
-    textSize(18);
-    text(timeStampText, 30, height-50);
-    println(timeStampText);
-    
+
+  String timeStampText = timeLog[0][abs(shiftX)];
+  fill(255);
+  textSize(18);
+  text(timeStampText, 30, height-50);
+  // println(timeStampText.substring(11));
+
+
+  timeHour = int(timeStampText.substring(11, 13));
+  timeMin = int(timeStampText.substring(14, 16));
+  timeSec = int(timeStampText.substring(17, 19));
+  timeMilli = int(timeStampText.substring(20));
+
+  println( timeHour + ":" + timeMin + ":" + timeSec + ":" + timeMilli);
+
+  currentTime = (timeHour*3600)*1000 + (timeMin*60)*1000 + (timeSec)*1000 + timeMilli;
+  timeDifference = currentTime - prevTime;
+  println(timeDifference/1000);
 }
 
+void setTime() {
+
+  String initialTime = timeLog[0][0];
+  long initTimeHour, initTimeMin, initTimeSec, initTimeMillis;
+
+  initTimeHour = int(initialTime.substring(11, 13));
+  initTimeMin = int(initialTime.substring(14, 16));
+  initTimeSec = int(initialTime.substring(17, 19));
+  initTimeMillis = int(initialTime.substring(20));
+  
+  prevTime = (initTimeHour*3600)*1000 + (initTimeMin*60)*1000 + (initTimeSec)*1000 + initTimeMillis;
+
+  //println(prevTime);
+}
+
+
 void setupGUI() {
- 
+
   /* ControlP5 setup */
   cp5 = new ControlP5(this);
 
   /*--------------- ACCELEROMETER DATA----------------- */
-  
+
   Group AccelX = cp5.addGroup("Accel X")
     .setLabel("Accelerometer X")
       .setWidth(200)
@@ -163,12 +192,12 @@ void setupGUI() {
     .setPosition(5, 5)
       .setWidth(200)
         .addItem(AccelX)
-        .addItem(AccelY)
-        .addItem(AccelZ)
-        .addItem(GyroX)
-        .addItem(GyroY)
-        .addItem(GyroZ)
-          .setItemHeight(70)
+          .addItem(AccelY)
+            .addItem(AccelZ)
+              .addItem(GyroX)
+                .addItem(GyroY)
+                  .addItem(GyroZ)
+                    .setItemHeight(70)
                       ;
 
   dataAccordion.setMinItemHeight(50);
@@ -204,7 +233,7 @@ void importData() {
     float lat = sensorDataRow.getFloat("locationLatitude");
     float lng = sensorDataRow.getFloat("locationLongitude");
 
-    
+
     moveDataArray [accelX][iter] = sensorDataRow.getFloat("accelerometerAccelerationX");
     moveDataArray [accelY][iter] = sensorDataRow.getFloat("accelerometerAccelerationY");
     moveDataArray [accelZ][iter] = sensorDataRow.getFloat("accelerometerAccelerationZ");
@@ -214,28 +243,27 @@ void importData() {
     moveDataArray [magX][iter] = sensorDataRow.getFloat("locationHeadingX");
     moveDataArray [magY][iter] = sensorDataRow.getFloat("locationHeadingY");
     moveDataArray [magZ][iter] = sensorDataRow.getFloat("locationHeadingZ");
-    
+
     timeLog [0][iter] = sensorDataRow.getString("loggingTime");
-    
+
     /* -- some kind of loading animation for large table creation -- */
     //loadScreen(iter);
 
     iter++;
-    
   }
-  
-sensorDataCSV.clearRows();
-  
+
+  setTime();
+
+  sensorDataCSV.clearRows();
 }
 
 void loadScreen(int scan) {
-  
+
   background(0);
   fill(map(scan, 0, dataRows, 0, 255));
-  rect(width/2-25, height/2, 50,50);
+  rect(width/2-25, height/2, 50, 50);
   fill(255);
-  text(map(scan, 0, dataRows, 0, 100) + "%", width/2-25, height/2 + 75); 
-  
+  text(map(scan, 0, dataRows, 0, 100) + "%", width/2-25, height/2 + 75);
 }
 
 void keyPressed() {
@@ -257,7 +285,5 @@ void keyPressed() {
       shiftX = 0;
     }
   }
-  
-  
 }
 
