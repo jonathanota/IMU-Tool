@@ -20,6 +20,7 @@ Location currentLocation = new Location(37.75646384343296f, -122.4212272838898f)
 UnfoldingMap map;
 DebugDisplay debugDisplay;
 
+float [][] locationDataArray;
 
 void setup() {
   size(displayWidth/2, displayHeight/2, OPENGL);
@@ -47,9 +48,14 @@ void initializeMap() {
 }
 
 void importData() {
-  String sensorDataFile = "sensorLog4.csv";
+  String sensorDataFile = "sensorLog3.csv";
   Table sensorDataCSV = loadTable(sensorDataFile, "header, csv");
+  
+  int dataColumns = 2;
+  int dataRows = sensorDataCSV.getRowCount();
+  int iter = 0;
 
+   locationDataArray = new float [dataColumns][dataRows];
   List<Location> sensorLocations = new ArrayList<Location>();
   List<Marker> sensorMarker = new ArrayList<Marker>();
 
@@ -58,8 +64,14 @@ void importData() {
     //each table row, inside list sensorDaraCSV.rows() 
     float lat = sensorDataRow.getFloat("locationLatitude");
     float lng = sensorDataRow.getFloat("locationLongitude");
+    
+    println(lat);
 
-    locationData = new Location(lat, lng);
+    locationDataArray[0][iter] = lat;
+    locationDataArray[1][iter] = lng;
+    //println(locationDataArray[0][iter]);
+    locationData = new Location(locationDataArray[0][iter], locationDataArray[1][iter]);
+    
     sensorLocations.add(locationData);
 
     //println(locationData);
@@ -68,8 +80,13 @@ void importData() {
     m.setColor(color(100));
     m.setStrokeWeight(10);
     sensorMarker.add(m);
+    
+    if (iter < dataRows){
+    iter+=10;  
+    }
+    
+    
   }
-    sensorDataCSV.clearRows();
 
   map.panTo(locationData);
   map.addMarkers(sensorMarker);
