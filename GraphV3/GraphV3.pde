@@ -285,5 +285,11 @@ void keyPressed() {
       shiftX = 0;
     }
   }
+  if (key == 'o'){
+    dataAccordion.open(0,1,2,3,4,5);
+  }
+  else if (key == 'c'){
+    dataAccordion.close(0,1,2,3,4,5);
+  }
 }
 
