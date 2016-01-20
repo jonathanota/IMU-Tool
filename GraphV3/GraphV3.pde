@@ -65,8 +65,8 @@ void draw() {
    motionAccelZ.display(shiftX, scaleY, width/2, height/1.1);
    */
   // println(frameRate);
-
   //println(scaleY);
+  
 }
 
 void timeStamp() {
@@ -85,9 +85,12 @@ void timeStamp() {
 
   println( timeHour + ":" + timeMin + ":" + timeSec + ":" + timeMilli);
 
+  //convert time of day into millis
   currentTime = (timeHour*3600)*1000 + (timeMin*60)*1000 + (timeSec)*1000 + timeMilli;
+  
+  //do a bit of math to figure out time in millis since program started running
   timeDifference = currentTime - prevTime;
-  println(timeDifference/1000);
+  println(timeDifference);
 }
 
 void setTime() {
@@ -99,10 +102,10 @@ void setTime() {
   initTimeMin = int(initialTime.substring(14, 16));
   initTimeSec = int(initialTime.substring(17, 19));
   initTimeMillis = int(initialTime.substring(20));
-  
-  prevTime = (initTimeHour*3600)*1000 + (initTimeMin*60)*1000 + (initTimeSec)*1000 + initTimeMillis;
 
-  //println(prevTime);
+  //first time reading.
+  prevTime = (initTimeHour*3600)*1000 + (initTimeMin*60)*1000 + (initTimeSec)*1000 + initTimeMillis;
+  println(prevTime);
 }
 
 
@@ -285,11 +288,10 @@ void keyPressed() {
       shiftX = 0;
     }
   }
-  if (key == 'o'){
-    dataAccordion.open(0,1,2,3,4,5);
-  }
-  else if (key == 'c'){
-    dataAccordion.close(0,1,2,3,4,5);
+  if (key == 'o') {
+    dataAccordion.open(0, 1, 2, 3, 4, 5);
+  } else if (key == 'c') {
+    dataAccordion.close(0, 1, 2, 3, 4, 5);
   }
 }
 
