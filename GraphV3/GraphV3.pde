@@ -77,7 +77,6 @@ void timeStamp() {
   text(timeStampText, 30, height-50);
   // println(timeStampText.substring(11));
 
-
   timeHour = int(timeStampText.substring(11, 13));
   timeMin = int(timeStampText.substring(14, 16));
   timeSec = int(timeStampText.substring(17, 19));
@@ -93,7 +92,7 @@ void timeStamp() {
   println(timeDifference);
 }
 
-void setTime() {
+void syncTime() {
 
   String initialTime = timeLog[0][0];
   long initTimeHour, initTimeMin, initTimeSec, initTimeMillis;
@@ -221,7 +220,8 @@ void importData() {
 
   //Setup graph
   shiftX = 1;
-  scaleY = width/float(dataRows);
+  //scaleY = width/float(dataRows);
+  scaleY = 5;
   PosX = width/2;
   PosY = height;
 
@@ -235,7 +235,6 @@ void importData() {
     //each table row, inside list sensorDaraCSV.rows() 
     float lat = sensorDataRow.getFloat("locationLatitude");
     float lng = sensorDataRow.getFloat("locationLongitude");
-
 
     moveDataArray [accelX][iter] = sensorDataRow.getFloat("accelerometerAccelerationX");
     moveDataArray [accelY][iter] = sensorDataRow.getFloat("accelerometerAccelerationY");
@@ -255,7 +254,8 @@ void importData() {
     iter++;
   }
 
-  setTime();
+  //set origin for syncing with video
+  syncTime();
 
   sensorDataCSV.clearRows();
 }
