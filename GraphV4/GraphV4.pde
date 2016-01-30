@@ -1,5 +1,9 @@
 import java.util.List;
 import controlP5.*;
+import g4p_controls.*;
+
+GWindow[] window;
+int windowNum = 3;
 
 ControlP5 cp5;
 
@@ -49,6 +53,7 @@ void setup() {
   motionGyroZ = new MoveDataObj("GyroZ", 10, dataColumns, dataRows, gyroZ, moveDataArray);
 
   setupGUI();
+  //createWindows();
 }
 
 
@@ -90,6 +95,25 @@ void timeStamp() {
   //do a bit of math to figure out time in millis since program started running
   timeDifference = currentTime - prevTime;
   println(timeDifference);
+}
+
+void createWindows(){
+ 
+ window = new GWindow[windowNum];
+ 
+ 
+ 
+ window[0] = new GWindow(this, "Graphs", 300, 200, displayWidth - 100, 
+ displayHeight - 100, false, "processing.core.PGraphicsRetina2D");
+ window[0].addData(new WinMovieData());
+ window[0].addDrawHandler(this, "WinMovieDraw");
+ window[0].addMouseHandler(this, "WinMovieMouse");
+ 
+ for (int i = 0; i < windowNum; i++)
+ {
+   window[i].setBackground(0);
+ }
+  
 }
 
 void syncTime() {
@@ -260,6 +284,8 @@ void importData() {
   sensorDataCSV.clearRows();
 }
 
+
+
 void loadScreen(int scan) {
 
   background(0);
@@ -293,5 +319,9 @@ void keyPressed() {
   } else if (key == 'c') {
     dataAccordion.close(0, 1, 2, 3, 4, 5);
   }
+}
+
+class WinMovieData extends GWinData{
+  
 }
 
