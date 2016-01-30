@@ -34,7 +34,7 @@ int timeHour, timeMin, timeSec, timeMilli;
 long currentTime, prevTime, timeDifference;
 
 void setup() {
-  size(displayWidth-100, displayHeight-100, "processing.core.PGraphicsRetina2D");
+  size(displayWidth-500, displayHeight-300, "processing.core.PGraphicsRetina2D");
   hint(ENABLE_RETINA_PIXELS);
   smooth();
   background(0);
@@ -53,7 +53,7 @@ void setup() {
   motionGyroZ = new MoveDataObj("GyroZ", 10, dataColumns, dataRows, gyroZ, moveDataArray);
 
   setupGUI();
-  //createWindows();
+  createWindows();
 }
 
 
@@ -103,17 +103,18 @@ void createWindows(){
  
  
  
- window[0] = new GWindow(this, "Graphs", 300, 200, displayWidth - 100, 
- displayHeight - 100, false, "processing.core.PGraphicsRetina2D");
+ window[0] = new GWindow(this, "Graphs", displayWidth - 495, 0, 400, 
+ 400, false, "processing.core.PGraphicsRetina2D");
  window[0].addData(new WinMovieData());
  window[0].addDrawHandler(this, "WinMovieDraw");
  window[0].addMouseHandler(this, "WinMovieMouse");
- 
+
+/* 
  for (int i = 0; i < windowNum; i++)
  {
    window[i].setBackground(0);
  }
-  
+  */
 }
 
 void syncTime() {
@@ -228,6 +229,7 @@ void setupGUI() {
 
   dataAccordion.setMinItemHeight(50);
   dataAccordion.setCollapseMode(Accordion.MULTI);
+  dataAccordion.open(0, 1, 2, 3, 4, 5);
 }
 
 void importData() {
